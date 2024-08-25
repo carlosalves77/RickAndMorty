@@ -1,6 +1,7 @@
 package br.com.dev.rickandmorty.contracts
 
 import br.com.dev.rickandmorty.data.model.ListOfCharactersDTO
+import retrofit2.Response
 
 interface MainActivityContract {
 
@@ -18,7 +19,7 @@ interface MainActivityContract {
     interface Model {
         interface OnFinishListener {
             fun onLoading()
-            fun onSuccess(characters: List<ListOfCharactersDTO>)
+            fun onSuccess(characters: Response<ListOfCharactersDTO>)
              fun onError(message: String)
         }
 

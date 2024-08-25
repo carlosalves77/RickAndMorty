@@ -7,7 +7,7 @@ interface MainActivityContract {
 
     interface View {
         fun onLoading()
-        fun onSuccess(characters: List<ListOfCharactersDTO>)
+        fun onSuccess(characters: Response<ListOfCharactersDTO>)
         fun onError(message: String)
     }
 

@@ -19,7 +19,7 @@ val NetworkModule = module {
         createRetrofit()
     }
     single {
-        createApiService(get ())
+        createApiService(get())
     }
 
 }

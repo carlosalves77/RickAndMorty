@@ -51,4 +51,6 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
     override fun onError(message: String) {
         Log.d("onErrorCharacters", "onError: $message")
     }
+
+
 }

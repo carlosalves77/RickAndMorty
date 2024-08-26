@@ -12,6 +12,8 @@
     <string name="favorite_white_start">favorite_white_start</string>
     <string name="rick_exemple">rick_exemple</string>
     <string name="favorite_star">favorite_star</string>
+    <string name="back_button">back_button</string>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

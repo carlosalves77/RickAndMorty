@@ -19,6 +19,8 @@ class FavoriteCharacterScreen : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
 
     override fun onCreateView(
@@ -27,6 +29,7 @@ class FavoriteCharacterScreen : Fragment() {
     ): View {
         _binding = FragmentFavoriteCharacterScreenBinding.inflate(inflater, container, false)
         return binding.root
+
 
     }
 

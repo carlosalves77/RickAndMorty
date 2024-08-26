@@ -8,4 +8,11 @@
         android:fontStyle="italic"
         android:fontWeight="400"
         android:font="@font/avenir_medium" />
+
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="800"
+        android:font="@font/avenir_large" />
+
+
 </font-family>

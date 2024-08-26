@@ -13,12 +13,14 @@ class MainPresenter (
     private val model: MainActivityContract.Model
 ): MainActivityContract.Presenter, MainActivityContract.Model.OnFinishListener{
 
+
     val scope = CoroutineScope(Dispatchers.IO)
 
     override fun getCharacters() {
        scope.launch {
            model.fetchCharacters(this@MainPresenter)
        }
+
     }
 
     override fun onDestroy() {
@@ -31,7 +33,7 @@ class MainPresenter (
         }
     }
 
-    override fun onSuccess(characters: Response<ListOfCharactersDTO>) {
+    override fun onSuccess(characters: List<ListOfCharactersDTO>) {
         scope.launch {
             view.onSuccess(characters)
         }

@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import br.com.dev.rickandmorty.R
 import br.com.dev.rickandmorty.contracts.MainActivityContract
 import br.com.dev.rickandmorty.data.ApiService
 import br.com.dev.rickandmorty.data.model.ListOfCharactersDTO
-import br.com.dev.rickandmorty.databinding.FragmentHomescreenBinding
+import br.com.dev.rickandmorty.databinding.FragmentHomescreenScreenBinding
 import br.com.dev.rickandmorty.model.MainModel
 import br.com.dev.rickandmorty.presenter.MainPresenter
 import br.com.dev.rickandmorty.ui.adapter.CharacterAdapter
@@ -19,7 +21,7 @@ import org.koin.android.ext.android.inject
 
 class HomeScreenFragment : Fragment(), MainActivityContract.View, View.OnClickListener {
 
-    private var _binding: FragmentHomescreenBinding? = null
+    private var _binding: FragmentHomescreenScreenBinding? = null
     private val binding by lazy {
         _binding!!
     }
@@ -34,13 +36,9 @@ class HomeScreenFragment : Fragment(), MainActivityContract.View, View.OnClickLi
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomescreenBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FragmentHomescreenScreenBinding.inflate(inflater, container, false)
 
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding.favoriteIconButton.setOnClickListener(this)
 
         presenter = MainPresenter(this, MainModel(apiService))
 
@@ -48,15 +46,17 @@ class HomeScreenFragment : Fragment(), MainActivityContract.View, View.OnClickLi
 
         initRecyclerView()
 
+
         binding.favoriteIconButton.setOnClickListener(this)
 
-
+        return binding.root
     }
+
 
     override fun onClick(v: View?) {
         when (v) {
             binding.favoriteIconButton -> {
-
+                findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_favoriteCharacterScreen)
             }
         }
     }

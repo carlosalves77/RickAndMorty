@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.com.dev.rickandmorty.R
 import br.com.dev.rickandmorty.databinding.FragmentFavoriteCharacterScreenBinding
-import br.com.dev.rickandmorty.databinding.FragmentHomescreenBinding
 
 
 class FavoriteCharacterScreen : Fragment() {

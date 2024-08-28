@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        navController = findNavController(R.id.navHostFragment)
+        navController = findNavController(R.id.fragmentContainerView)
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

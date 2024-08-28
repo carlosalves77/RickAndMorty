@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dev.rickandmorty.R
 import br.com.dev.rickandmorty.data.model.Result
 import br.com.dev.rickandmorty.databinding.CharacterRowBinding
 import coil.load
@@ -39,8 +41,16 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.MyViewHolder>() {
                 crossfade(true)
                 crossfade(1000)
             }
-            cardContainer.setOnClickListener {
-                Log.d("Adapter", "Card clicked")
+            cardContainer.setOnClickListener { view ->
+                view.findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_favoriteCharacterScreen)
+            }
+
+            val isFavorite = false
+
+            if (isFavorite) {
+                favoriteStar.setImageResource(R.drawable.favorite_green_star)
+            } else {
+                favoriteStar.setImageResource(R.drawable.favorite_outline_star)
             }
         }
 

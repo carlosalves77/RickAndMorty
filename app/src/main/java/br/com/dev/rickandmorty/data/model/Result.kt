@@ -12,5 +12,5 @@ data class Result(
     val origin: Origin,
     val location: Location,
     val image: String,
-
+    val created: String?
 )

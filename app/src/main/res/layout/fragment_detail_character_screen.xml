@@ -94,6 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:layout_marginBottom="22dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -118,7 +119,7 @@
                     android:fontFamily="@font/avenir_medium"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    tools:text="gender: " />
+                    android:text="gender: " />
 
                 <TextView
                     android:id="@+id/gender_name"
@@ -144,7 +145,7 @@
                     android:fontFamily="@font/avenir_medium"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    tools:text="species: " />
+                    android:text="species: " />
 
                 <TextView
                     android:id="@+id/species_name"
@@ -170,7 +171,7 @@
                     android:fontFamily="@font/avenir_medium"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    tools:text="status: " />
+                    android:text="status: " />
 
                 <TextView
                     android:id="@+id/status_name"
@@ -196,7 +197,7 @@
                     android:fontFamily="@font/avenir_medium"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    tools:text="created: " />
+                    android:text="created: " />
 
                 <TextView
                     android:id="@+id/created_name"

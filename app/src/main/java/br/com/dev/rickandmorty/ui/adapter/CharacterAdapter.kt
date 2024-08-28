@@ -1,6 +1,7 @@
 package br.com.dev.rickandmorty.ui.adapter
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -42,7 +43,16 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.MyViewHolder>() {
                 crossfade(1000)
             }
             cardContainer.setOnClickListener { view ->
-                view.findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_favoriteCharacterScreen)
+                val bundle = Bundle()
+                bundle.putString("characterName", currentCharacters.name)
+                bundle.putString("characterSpecie", currentCharacters.species)
+                bundle.putString("characterImage", currentCharacters.image)
+                bundle.putString("characterStatus", currentCharacters.status)
+                bundle.putString("characterGender", currentCharacters.gender)
+                bundle.putString("characterCreated", currentCharacters.created)
+
+                view.findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_detailCharacterScreen, bundle)
+
             }
 
             val isFavorite = false

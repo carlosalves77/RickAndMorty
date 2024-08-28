@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.com.dev.rickandmorty.R
 import br.com.dev.rickandmorty.databinding.FragmentDetailCharacterScreenBinding
+import coil.load
 
 
 class DetailCharacterScreen : Fragment() {
@@ -28,6 +29,17 @@ class DetailCharacterScreen : Fragment() {
         binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_detailCharacterScreen_to_homeScreenFragmentScreen)
         }
+
+        binding.characterName.text = arguments?.getString("characterName")
+        binding.speciesName.text = arguments?.getString("characterSpecie")
+        binding.characterImage.load(arguments?.getString("characterImage")) {
+            crossfade(true)
+            crossfade(1000)
+        }
+        binding.statusName.text = arguments?.getString("characterStatus")
+        binding.genderName.text = arguments?.getString("characterGender")
+        binding.createdName.text = arguments?.getString("characterCreated")
+
 
         return binding.root
     }

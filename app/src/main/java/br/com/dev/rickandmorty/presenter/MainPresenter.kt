@@ -2,6 +2,7 @@ package br.com.dev.rickandmorty.presenter
 
 import br.com.dev.rickandmorty.contracts.MainActivityContract
 import br.com.dev.rickandmorty.data.model.ListOfCharactersDTO
+import br.com.dev.rickandmorty.data.model.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -14,7 +15,7 @@ class MainPresenter (
 ): MainActivityContract.Presenter, MainActivityContract.Model.OnFinishListener{
 
 
-    val scope = CoroutineScope(Dispatchers.IO)
+    private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun getCharacters() {
        scope.launch {
@@ -33,7 +34,7 @@ class MainPresenter (
         }
     }
 
-    override fun onSuccess(characters: List<ListOfCharactersDTO>) {
+    override fun onSuccess(characters: ListOfCharactersDTO) {
         scope.launch {
             view.onSuccess(characters)
         }

@@ -21,6 +21,7 @@
         android:id="@+id/favoriteIconButton"
         android:layout_width="18dp"
         android:layout_height="18dp"
+        android:contentDescription="@string/favorite_star"
         android:layout_marginTop="44dp"
         android:src="@drawable/favorite_white_start"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,16 +29,35 @@
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="76dp"
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_home"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="30dp"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.0"
+        app:spanCount="2"
+        tools:listitem="@layout/character_row" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

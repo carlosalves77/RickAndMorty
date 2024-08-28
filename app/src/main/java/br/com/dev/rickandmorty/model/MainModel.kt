@@ -1,11 +1,7 @@
 package br.com.dev.rickandmorty.model
 
-import android.util.Log
 import br.com.dev.rickandmorty.contracts.MainActivityContract
 import br.com.dev.rickandmorty.data.ApiService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainModel(
     private val apiService: ApiService

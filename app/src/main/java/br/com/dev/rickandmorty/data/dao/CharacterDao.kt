@@ -14,7 +14,7 @@ interface CharacterDao {
     suspend fun insertCharacter(character: CharacterDataBaseModel)
 
     @Query("SELECT * FROM CHARACTER_TABLE")
-    fun getAllCharacters(): Flow<MutableList<CharacterDataBaseModel>>
+    fun getAllCharacters(): List<CharacterDataBaseModel>
 
     @Query("DELETE FROM CHARACTER_TABLE WHERE id = :id")
     suspend fun deleteCharacter(id: Int)

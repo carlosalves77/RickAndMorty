@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+
 }
 
 android {
@@ -68,15 +69,18 @@ dependencies {
     implementation ("io.insert-koin:koin-android:$versionKoin")
 
     // Room
-    val room_version = "2.6.1"
-    implementation ("androidx.room:room-runtime:$room_version")
-    annotationProcessor ("androidx.room:room-compiler:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
+    val room_Version = "2.6.1"
+    implementation ("androidx.room:room-runtime:$room_Version")
+    implementation("androidx.room:room-ktx:$room_Version")
+    annotationProcessor ("androidx.room:room-compiler:$room_Version")
+    kapt("androidx.room:room-compiler:$room_Version")
+
 
     // Fragment Navigation
     val nav_version = "2.7.7"
 
     implementation("androidx.navigation:navigation-fragment:$nav_version")
     implementation("androidx.navigation:navigation-ui:$nav_version")
+
 
 }

@@ -2,40 +2,44 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/homeScreenFragment"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeScreenFragmentScreen">
 
-    <fragment android:name="br.com.dev.rickandmorty.ui.screens.HomeScreenFragment"
-        android:id="@+id/homeScreenFragment"
-        android:label="Home Screen"
-        tools:layout="@layout/fragment_homescreen"
+    <fragment
+        android:id="@+id/homeScreenFragmentScreen"
+        android:name="br.com.dev.rickandmorty.ui.screens.HomeScreenFragment"
+        android:label="HomeScreenFragment"
+        tools:layout="@layout/fragment_homescreen_screen"
         >
         <action
-            android:id="@+id/action_homeScreenFragment_to_detailCharacterScreen"
+            android:id="@+id/action_homeScreenFragmentScreen_to_detailCharacterScreen"
             app:destination="@id/detailCharacterScreen" />
         <action
-            android:id="@+id/action_homeScreenFragment_to_favoriteCharacterScreen"
+            android:id="@+id/action_homeScreenFragmentScreen_to_favoriteCharacterScreen"
             app:destination="@id/favoriteCharacterScreen" />
     </fragment>
 
-    <fragment android:name="br.com.dev.rickandmorty.ui.screens.HomeScreenFragment"
+
+    <fragment
         android:id="@+id/detailCharacterScreen"
-        android:label="Home Screen"
-        tools:layout="@layout/fragment_detail_character_screen"
-        >
+        android:name="br.com.dev.rickandmorty.ui.screens.DetailCharacterScreen"
+        android:label="fragment_favorite_character_screen"
+        tools:layout="@layout/fragment_detail_character_screen" >
         <action
-            android:id="@+id/action_detailCharacterScreen_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
+            android:id="@+id/action_detailCharacterScreen_to_homeScreenFragmentScreen"
+            app:destination="@id/homeScreenFragmentScreen" />
     </fragment>
 
-    <fragment android:name="br.com.dev.rickandmorty.ui.screens.HomeScreenFragment"
+
+    <fragment
         android:id="@+id/favoriteCharacterScreen"
-        android:label="Home Screen"
+        android:name="br.com.dev.rickandmorty.ui.screens.FavoriteCharacterScreen"
+        android:label="FavoriteCharacterScreen"
         tools:layout="@layout/fragment_favorite_character_screen"
         >
         <action
-            android:id="@+id/action_favoriteCharacterScreen_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
+            android:id="@+id/action_favoriteCharacterScreen_to_homeScreenFragmentScreen"
+            app:destination="@id/homeScreenFragmentScreen" />
     </fragment>
 
 

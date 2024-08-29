@@ -1,17 +1,13 @@
 package br.com.dev.rickandmorty.model
 
-import android.util.Log
-import br.com.dev.rickandmorty.contracts.MainActivityContract
+import br.com.dev.rickandmorty.contracts.HomeContract
 import br.com.dev.rickandmorty.data.ApiService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainModel(
-    private val apiService: ApiService
-) : MainActivityContract.Model {
+   private val apiService: ApiService
+) : HomeContract.Model {
 
-    override suspend fun fetchCharacters(onFinishListener: MainActivityContract.Model.OnFinishListener) {
+    override suspend fun fetchCharacters(onFinishListener: HomeContract.Model.OnFinishListener) {
 
         onFinishListener.onLoading()
 

@@ -6,56 +6,89 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.com.dev.rickandmorty.contracts.MainActivityContract
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import br.com.dev.rickandmorty.R
+import br.com.dev.rickandmorty.contracts.HomeContract
 import br.com.dev.rickandmorty.data.ApiService
 import br.com.dev.rickandmorty.data.model.ListOfCharactersDTO
-import br.com.dev.rickandmorty.databinding.FragmentHomescreenBinding
+import br.com.dev.rickandmorty.databinding.FragmentHomescreenScreenBinding
 import br.com.dev.rickandmorty.model.MainModel
-import br.com.dev.rickandmorty.presenter.MainPresenter
+import br.com.dev.rickandmorty.presenter.HomePresenter
+import br.com.dev.rickandmorty.ui.adapter.CharacterAdapter
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
-class HomeScreenFragment : Fragment(), MainActivityContract.View {
+class HomeScreenFragment : Fragment(), HomeContract.View{
 
-    private var _binding: FragmentHomescreenBinding? = null
+    private var _binding: FragmentHomescreenScreenBinding? = null
     private val binding by lazy {
         _binding!!
     }
 
-    val apiService: ApiService by inject()
+    private val apiService: ApiService by inject()
 
-    private lateinit var presenter: MainPresenter
+    private lateinit var characterPresenter: HomePresenter
+
+    private val characterAdapter = CharacterAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomescreenBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FragmentHomescreenScreenBinding.inflate(inflater, container, false)
 
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = MainPresenter(this, MainModel(apiService))
+        characterPresenter = HomePresenter(this, MainModel(apiService))
 
+        characterPresenter.getCharacters()
+
+        initRecyclerView()
+
+        binding.favoriteIconButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_favoriteCharacterScreen)
+        }
+
+
+    }
+
+
+    private fun initRecyclerView() {
+        binding.rvHome.adapter = characterAdapter
+        binding.rvHome.setHasFixedSize(true)
     }
 
     override fun onLoading() {
-      Log.d("onLoadingCharacters", "onLoading")
+        lifecycleScope.launch {
+            binding.progressbar.visibility = View.VISIBLE
+        }
     }
 
-    override fun onSuccess(characters: List<ListOfCharactersDTO>) {
-      Log.d("onSuccessCharacters", "onSuccess: $characters")
+    override fun onSuccess(characters: ListOfCharactersDTO) {
+        lifecycleScope.launch {
+            characterAdapter.setData(characters.results)
+            binding.progressbar.visibility = View.GONE
+            binding.rvHome.visibility = View.VISIBLE
+        }
+
     }
 
     override fun onError(message: String) {
-       Log.d("onErrorCharacters", "onError: $message")
+        Log.d("onErrorCharacters", "onError: $message")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
+
+
 }

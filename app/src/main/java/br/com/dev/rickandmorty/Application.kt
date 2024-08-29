@@ -1,6 +1,7 @@
 package br.com.dev.rickandmorty
 
 import android.app.Application
+import br.com.dev.rickandmorty.di.LocalModule
 import br.com.dev.rickandmorty.di.NetworkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -14,7 +15,7 @@ class Application : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@Application)
-            modules(NetworkModule)
+            modules(NetworkModule, LocalModule)
         }
 
     }

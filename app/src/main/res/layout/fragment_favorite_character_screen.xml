@@ -11,13 +11,10 @@
         android:id="@+id/back_button"
         android:layout_width="0dp"
         android:layout_height="22dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="365dp"
         android:contentDescription="@string/back_button"
+        android:layout_marginTop="42dp"
+        android:layout_marginStart="24dp"
         android:src="@drawable/back_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/favorite_Rv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,12 +33,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favorite_Rv"
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_marginTop="42dp"
         android:layout_marginStart="31dp"
         android:layout_marginEnd="31dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:padding="15dp"
+        tools:listitem="@layout/favorite_card"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

@@ -4,7 +4,7 @@ import br.com.dev.rickandmorty.contracts.MainActivityContract
 import br.com.dev.rickandmorty.data.ApiService
 
 class MainModel(
-    private val apiService: ApiService
+   private val apiService: ApiService
 ) : MainActivityContract.Model {
 
     override suspend fun fetchCharacters(onFinishListener: MainActivityContract.Model.OnFinishListener) {

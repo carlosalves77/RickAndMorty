@@ -5,16 +5,9 @@ import br.com.dev.rickandmorty.data.model.CharacterDataBaseModel
 interface FavoriteContract {
 
     interface View {
-        suspend fun saveCharacter(characters: CharacterDataBaseModel)
-        fun getCharacters()
-        suspend fun deleteCharacter(id: Int)
+        suspend fun saveCharacter()
+        fun getCharacters(characters: List<CharacterDataBaseModel>)
+        fun onCharacterDeleted()
     }
-
-    interface Presenter {
-        suspend fun saveCharacter(characters: CharacterDataBaseModel)
-        fun getCharacters()
-        suspend fun deleteCharacter(id: Int)
-    }
-
 
 }

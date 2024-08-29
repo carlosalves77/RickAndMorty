@@ -7,7 +7,7 @@ class DatabaseRepository (private val dao: CharacterDao) {
 
     suspend fun saveCharacter(character: CharacterDataBaseModel) = dao.insertCharacter(character)
 
-    fun getAllCharacters() = dao.getAllCharacters()
+    fun getAllCharacters(): List<CharacterDataBaseModel> = dao.getAllCharacters()
 
     suspend fun deleteCharacter(id: Int) = dao.deleteCharacter(id)
 

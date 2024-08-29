@@ -17,6 +17,7 @@ val NetworkModule = module {
     single {
         createRetrofit(get())
     }
+
 }
 
 

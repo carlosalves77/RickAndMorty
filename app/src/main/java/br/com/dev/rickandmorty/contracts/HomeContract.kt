@@ -1,10 +1,8 @@
 package br.com.dev.rickandmorty.contracts
 
 import br.com.dev.rickandmorty.data.model.ListOfCharactersDTO
-import br.com.dev.rickandmorty.data.model.Result
-import retrofit2.Response
 
-interface MainActivityContract {
+interface HomeContract {
 
     interface View {
         fun onLoading()

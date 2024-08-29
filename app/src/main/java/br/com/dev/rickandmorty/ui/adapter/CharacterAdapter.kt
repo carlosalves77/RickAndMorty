@@ -52,6 +52,7 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.MyViewHolder>() {
                 bundle.putString("characterGender", currentCharacters.gender)
                 bundle.putString("characterCreated", currentCharacters.created)
 
+
                 view.findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_detailCharacterScreen, bundle)
             }
 
@@ -71,7 +72,6 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.MyViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(characters: List<Result>) {
-        Log.d("Adapter", "setData called with ${characters} items")
         this.mCharacters = characters
         notifyDataSetChanged()
     }

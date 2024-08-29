@@ -53,8 +53,6 @@ class DetailCharacterScreen : Fragment(), FavoriteContract.DetailView {
         binding.genderName.text = arguments?.getString("characterGender")
 
         val createDate = arguments?.getString("characterCreated")
-        val id = arguments?.getInt("characterId")
-        val image = arguments?.getString("characterImage").toString()
 
 
         val formattedDate = createDate?.let {
@@ -66,15 +64,8 @@ class DetailCharacterScreen : Fragment(), FavoriteContract.DetailView {
 
         binding.favoriteStar.setOnClickListener {
             lifecycleScope.launch {
-                val character = CharacterDataBaseModel(
-                    id = id!!,
-                    name = binding.characterName.text.toString(),
-                    species = binding.speciesName.text.toString(),
-                    picture = image,
-                )
-                characterDetailPresenter.saveCharacter(
-                    character
-                )
+                saveCharacter()
+
             }
         }
 
@@ -95,22 +86,28 @@ class DetailCharacterScreen : Fragment(), FavoriteContract.DetailView {
 
     }
 
+    override suspend fun saveCharacter() {
+
+        val id = arguments?.getInt("characterId")
+        val image = arguments?.getString("characterImage").toString()
+
+
+        val character = CharacterDataBaseModel(
+            id = id!!,
+            name = binding.characterName.text.toString(),
+            species = binding.speciesName.text.toString(),
+            picture = image,
+        )
+        characterDetailPresenter.saveCharacter(
+            character
+        )
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
-    override suspend fun saveCharacter() {
-
-    }
-
-//    override fun getCharacters(characters: List<CharacterDataBaseModel>) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun onCharacterDeleted(id: Int) {
-//        TODO("Not yet implemented")
-//    }
 
 }

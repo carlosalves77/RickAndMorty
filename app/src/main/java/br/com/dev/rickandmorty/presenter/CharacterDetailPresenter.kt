@@ -27,24 +27,4 @@ class CharacterDetailPresenter(
     }
 
 
-//    fun getCharacters() {
-//        scope.launch {
-//            val characters = model.getCharacters()
-//            withContext(Dispatchers.Main) {
-//                view.getCharacters(characters)
-//            }
-//
-//        }
-//    }
-
-//    suspend fun deleteCharacter(id: Int) {
-//        scope.launch {
-//            model.deleteCharacter(id)
-//            withContext(Dispatchers.Main) {
-//                view.onCharacterDeleted(id)
-//            }
-//        }
-//    }
-
-
 }

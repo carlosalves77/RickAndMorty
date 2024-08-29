@@ -10,9 +10,14 @@ import br.com.dev.rickandmorty.databinding.FavoriteCardBinding
 import coil.load
 
 
-class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
+class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
     private var mFavoriteCharacters = listOf<CharacterDataBaseModel>()
+
+    interface onDeleteClickListener {
+        fun onDeleteClick(id: Int)
+    }
+
 
     inner class MyViewHolder(val binding: FavoriteCardBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -28,7 +33,7 @@ class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
         return MyViewHolder(binding)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onBindViewHolder(holder: FavoriteAdapter.MyViewHolder, position: Int) {
         val currentCharacters = this.mFavoriteCharacters[position]
 
@@ -53,18 +58,13 @@ class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(characters: List<CharacterDataBaseModel>) {
-        Log.d("AdapterFavorite", "setData called with $characters items")
         this.mFavoriteCharacters = characters
         notifyDataSetChanged()
     }
 
+    fun deleteCharacter(id: Int)  {
 
-
-    fun deleteCharacter(id: Int) : Int{
-       return id
-       
     }
-
 
 
 }

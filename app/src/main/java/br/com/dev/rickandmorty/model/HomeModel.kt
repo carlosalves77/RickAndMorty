@@ -1,13 +1,13 @@
 package br.com.dev.rickandmorty.model
 
-import br.com.dev.rickandmorty.contracts.MainActivityContract
+import br.com.dev.rickandmorty.contracts.HomeContract
 import br.com.dev.rickandmorty.data.ApiService
 
 class MainModel(
    private val apiService: ApiService
-) : MainActivityContract.Model {
+) : HomeContract.Model {
 
-    override suspend fun fetchCharacters(onFinishListener: MainActivityContract.Model.OnFinishListener) {
+    override suspend fun fetchCharacters(onFinishListener: HomeContract.Model.OnFinishListener) {
 
         onFinishListener.onLoading()
 

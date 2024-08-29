@@ -1,17 +1,16 @@
 package br.com.dev.rickandmorty.ui.screens
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import br.com.dev.rickandmorty.R
 import br.com.dev.rickandmorty.contracts.FavoriteContract
 import br.com.dev.rickandmorty.data.model.CharacterDataBaseModel
 import br.com.dev.rickandmorty.databinding.FragmentFavoriteCharacterScreenBinding
-import br.com.dev.rickandmorty.presenter.CharacterDetailPresenter
 import br.com.dev.rickandmorty.presenter.CharacterFavoritePresenter
 import br.com.dev.rickandmorty.ui.adapter.FavoriteAdapter
 import kotlinx.coroutines.launch
@@ -26,9 +25,11 @@ class FavoriteCharacterScreen : Fragment(), FavoriteContract.FavoriteView {
         _binding!!
     }
 
+    private val favoriteAdapter = FavoriteAdapter()
+
+
     private val characterDetailPresenter: CharacterFavoritePresenter by inject { parametersOf(this) }
 
-    private val favoriteAdapter  = FavoriteAdapter()
 
 
     override fun onCreateView(
@@ -42,14 +43,13 @@ class FavoriteCharacterScreen : Fragment(), FavoriteContract.FavoriteView {
 
         characterDetailPresenter.getCharacters()
 
-
         binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_favoriteCharacterScreen_to_homeScreenFragmentScreen)
         }
 
+
+
         return binding.root
-
-
     }
 
     private fun initRecyclerView() {
@@ -59,10 +59,6 @@ class FavoriteCharacterScreen : Fragment(), FavoriteContract.FavoriteView {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
     override fun getCharacters(characters: List<CharacterDataBaseModel>) {
         lifecycleScope.launch {
@@ -70,13 +66,17 @@ class FavoriteCharacterScreen : Fragment(), FavoriteContract.FavoriteView {
         }
     }
 
-    override fun onCharacterDeleted(id: Int) {
-      lifecycleScope.launch {
+    override fun deleteCharacter(id: Int) {
+        lifecycleScope.launch {
+            characterDetailPresenter.deleteCharacter(id)
+        }
 
-
-      }
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }

@@ -15,18 +15,6 @@ class CharacterFavoritePresenter(
 
     private val scope = CoroutineScope(Dispatchers.IO)
 
-//    fun saveCharacter(characters: CharacterDataBaseModel) {
-//        scope.launch {
-//            withContext(Dispatchers.Main) {
-//                model.saveCharacter(characters)
-//                withContext(Dispatchers.Main) {
-//                    view.saveCharacter()
-//                }
-//            }
-//        }
-//    }
-
-
     fun getCharacters() {
         scope.launch {
             val characters = model.getCharacters()
@@ -40,8 +28,8 @@ class CharacterFavoritePresenter(
     suspend fun deleteCharacter(id: Int) {
         scope.launch {
             model.deleteCharacter(id)
-            withContext(Dispatchers.Main) {
-                view.onCharacterDeleted(id)
+            withContext(Dispatchers.IO) {
+                view.deleteCharacter(id)
             }
         }
     }

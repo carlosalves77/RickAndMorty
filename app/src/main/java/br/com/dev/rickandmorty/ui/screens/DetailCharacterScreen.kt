@@ -11,7 +11,7 @@ import br.com.dev.rickandmorty.R
 import br.com.dev.rickandmorty.contracts.FavoriteContract
 import br.com.dev.rickandmorty.data.model.CharacterDataBaseModel
 import br.com.dev.rickandmorty.databinding.FragmentDetailCharacterScreenBinding
-import br.com.dev.rickandmorty.presenter.CharacterPresenter
+import br.com.dev.rickandmorty.presenter.CharacterDetailPresenter
 import coil.load
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -21,14 +21,14 @@ import java.util.Locale
 import java.util.TimeZone
 
 
-class DetailCharacterScreen : Fragment(), FavoriteContract.View {
+class DetailCharacterScreen : Fragment(), FavoriteContract.DetailView {
 
     private var _binding: FragmentDetailCharacterScreenBinding? = null
     private val binding by lazy {
         _binding!!
     }
 
-    private val characterPresenter: CharacterPresenter by inject { parametersOf(this) }
+    private val characterDetailPresenter: CharacterDetailPresenter by inject { parametersOf(this) }
 
 
     override fun onCreateView(
@@ -72,7 +72,7 @@ class DetailCharacterScreen : Fragment(), FavoriteContract.View {
                     species = binding.speciesName.text.toString(),
                     picture = image,
                 )
-                characterPresenter.saveCharacter(
+                characterDetailPresenter.saveCharacter(
                     character
                 )
             }
@@ -105,13 +105,12 @@ class DetailCharacterScreen : Fragment(), FavoriteContract.View {
 
     }
 
-    override fun getCharacters(characters: List<CharacterDataBaseModel>) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onCharacterDeleted() {
-        TODO("Not yet implemented")
-    }
-
+//    override fun getCharacters(characters: List<CharacterDataBaseModel>) {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun onCharacterDeleted(id: Int) {
+//        TODO("Not yet implemented")
+//    }
 
 }

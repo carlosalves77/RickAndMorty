@@ -8,8 +8,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CharacterPresenter(
-    private val view: FavoriteContract.View,
+class CharacterDetailPresenter(
+    private val view: FavoriteContract.DetailView,
     private val model: CharacterModel
 ) {
 
@@ -27,24 +27,24 @@ class CharacterPresenter(
     }
 
 
-    fun getCharacters() {
-        scope.launch {
-            val characters = model.getCharacters()
-            withContext(Dispatchers.Main) {
-                view.getCharacters(characters)
-            }
+//    fun getCharacters() {
+//        scope.launch {
+//            val characters = model.getCharacters()
+//            withContext(Dispatchers.Main) {
+//                view.getCharacters(characters)
+//            }
+//
+//        }
+//    }
 
-        }
-    }
-
-    suspend fun deleteCharacter(id: Int) {
-        scope.launch {
-            model.deleteCharacter(id)
-            withContext(Dispatchers.Main) {
-                view.onCharacterDeleted()
-            }
-        }
-    }
+//    suspend fun deleteCharacter(id: Int) {
+//        scope.launch {
+//            model.deleteCharacter(id)
+//            withContext(Dispatchers.Main) {
+//                view.onCharacterDeleted(id)
+//            }
+//        }
+//    }
 
 
 }

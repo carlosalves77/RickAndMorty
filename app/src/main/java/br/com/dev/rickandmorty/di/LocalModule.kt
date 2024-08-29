@@ -5,7 +5,8 @@ import androidx.room.Room
 import br.com.dev.rickandmorty.contracts.FavoriteContract
 import br.com.dev.rickandmorty.data.CharacterDatabase
 import br.com.dev.rickandmorty.model.CharacterModel
-import br.com.dev.rickandmorty.presenter.CharacterPresenter
+import br.com.dev.rickandmorty.presenter.CharacterDetailPresenter
+import br.com.dev.rickandmorty.presenter.CharacterFavoritePresenter
 import br.com.dev.rickandmorty.repository.DatabaseRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -28,7 +29,10 @@ val LocalModule = module {
 
     }
     factory {
-        (view: FavoriteContract.View) -> CharacterPresenter(view, get())
+        (view: FavoriteContract.DetailView) -> CharacterDetailPresenter(view, get())
+    }
+    factory {
+            (view: FavoriteContract.FavoriteView) -> CharacterFavoritePresenter(view, get())
     }
 
 }

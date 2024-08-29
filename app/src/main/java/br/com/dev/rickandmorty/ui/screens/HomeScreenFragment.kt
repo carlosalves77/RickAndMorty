@@ -9,21 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import br.com.dev.rickandmorty.R
-import br.com.dev.rickandmorty.contracts.FavoriteContract
 import br.com.dev.rickandmorty.contracts.MainActivityContract
 import br.com.dev.rickandmorty.data.ApiService
-import br.com.dev.rickandmorty.data.model.CharacterDataBaseModel
 import br.com.dev.rickandmorty.data.model.ListOfCharactersDTO
 import br.com.dev.rickandmorty.databinding.FragmentHomescreenScreenBinding
-import br.com.dev.rickandmorty.model.CharacterModel
 import br.com.dev.rickandmorty.model.MainModel
-import br.com.dev.rickandmorty.presenter.CharacterPresenter
 import br.com.dev.rickandmorty.presenter.MainPresenter
-import br.com.dev.rickandmorty.repository.DatabaseRepository
 import br.com.dev.rickandmorty.ui.adapter.CharacterAdapter
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 
 class HomeScreenFragment : Fragment(), MainActivityContract.View, View.OnClickListener {
 

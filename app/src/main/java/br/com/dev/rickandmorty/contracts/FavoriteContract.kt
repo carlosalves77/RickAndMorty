@@ -4,10 +4,12 @@ import br.com.dev.rickandmorty.data.model.CharacterDataBaseModel
 
 interface FavoriteContract {
 
-    interface View {
+    interface DetailView {
         suspend fun saveCharacter()
+    }
+    interface FavoriteView {
         fun getCharacters(characters: List<CharacterDataBaseModel>)
-        fun onCharacterDeleted()
+        fun onCharacterDeleted(id: Int)
     }
 
 }

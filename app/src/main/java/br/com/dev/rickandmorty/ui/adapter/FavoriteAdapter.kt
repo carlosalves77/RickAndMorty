@@ -1,24 +1,16 @@
 package br.com.dev.rickandmorty.ui.adapter
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import br.com.dev.rickandmorty.R
 import br.com.dev.rickandmorty.data.model.CharacterDataBaseModel
-import br.com.dev.rickandmorty.data.model.Result
-import br.com.dev.rickandmorty.databinding.CharacterRowBinding
 import br.com.dev.rickandmorty.databinding.FavoriteCardBinding
-import br.com.dev.rickandmorty.presenter.CharacterPresenter
 import coil.load
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
+
+class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
     private var mFavoriteCharacters = listOf<CharacterDataBaseModel>()
 
@@ -50,9 +42,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
             }
 
             favoriteStar.setOnClickListener {
-                CoroutineScope(Dispatchers.IO).launch {
+                deleteCharacter(currentCharacters.id)
 
-                }
             }
         }
 
@@ -65,6 +56,13 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
         Log.d("AdapterFavorite", "setData called with $characters items")
         this.mFavoriteCharacters = characters
         notifyDataSetChanged()
+    }
+
+
+
+    fun deleteCharacter(id: Int) : Int{
+       return id
+       
     }
 
 

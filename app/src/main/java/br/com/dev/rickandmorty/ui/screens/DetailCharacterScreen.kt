@@ -1,9 +1,11 @@
 package br.com.dev.rickandmorty.ui.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -37,6 +39,12 @@ class DetailCharacterScreen : Fragment(), FavoriteContract.DetailView {
     ): View {
         _binding = FragmentDetailCharacterScreenBinding.inflate(inflater, container, false)
 
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_detailCharacterScreen_to_homeScreenFragmentScreen)
@@ -65,11 +73,9 @@ class DetailCharacterScreen : Fragment(), FavoriteContract.DetailView {
         binding.favoriteStar.setOnClickListener {
             lifecycleScope.launch {
                 saveCharacter()
-
             }
         }
 
-        return binding.root
 
     }
 
@@ -101,6 +107,12 @@ class DetailCharacterScreen : Fragment(), FavoriteContract.DetailView {
         characterDetailPresenter.saveCharacter(
             character
         )
+        Log.d("saveCharacter", "saveCharacter: $")
+        Toast.makeText(
+            context?.applicationContext,
+            "Personagem salvo com sucesso!",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
 

@@ -18,19 +18,18 @@ import br.com.dev.rickandmorty.presenter.HomePresenter
 import br.com.dev.rickandmorty.ui.adapter.CharacterAdapter
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
-class HomeScreenFragment : Fragment(), HomeContract.View, View.OnClickListener {
+class HomeScreenFragment : Fragment(), HomeContract.View{
 
     private var _binding: FragmentHomescreenScreenBinding? = null
     private val binding by lazy {
         _binding!!
     }
 
-//    private val characterPresenter: CharacterPresenter by inject { parametersOf(this) }
-
     private val apiService: ApiService by inject()
 
-    private lateinit var presenter: HomePresenter
+    private lateinit var characterPresenter: HomePresenter
 
     private val characterAdapter = CharacterAdapter()
 
@@ -41,29 +40,25 @@ class HomeScreenFragment : Fragment(), HomeContract.View, View.OnClickListener {
     ): View {
         _binding = FragmentHomescreenScreenBinding.inflate(inflater, container, false)
 
-        binding.favoriteIconButton.setOnClickListener(this)
-
-        presenter = HomePresenter(this, MainModel(apiService))
-
-        presenter.getCharacters()
-
-
-
-        initRecyclerView()
-
-        binding.favoriteIconButton.setOnClickListener(this)
-
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onClick(v: View?) {
-        when (v) {
-            binding.favoriteIconButton -> {
-                findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_favoriteCharacterScreen)
-            }
+        characterPresenter = HomePresenter(this, MainModel(apiService))
+
+        characterPresenter.getCharacters()
+
+        initRecyclerView()
+
+        binding.favoriteIconButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_favoriteCharacterScreen)
         }
+
+
     }
+
 
     private fun initRecyclerView() {
         binding.rvHome.adapter = characterAdapter

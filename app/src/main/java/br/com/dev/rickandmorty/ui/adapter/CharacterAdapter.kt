@@ -52,17 +52,10 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.MyViewHolder>() {
                 bundle.putString("characterGender", currentCharacters.gender)
                 bundle.putString("characterCreated", currentCharacters.created)
 
-
-                view.findNavController().navigate(R.id.action_homeScreenFragmentScreen_to_detailCharacterScreen, bundle)
+                view.findNavController()
+                    .navigate(R.id.action_homeScreenFragmentScreen_to_detailCharacterScreen, bundle)
             }
 
-//            val isFavorite = false
-//
-//            if (isFavorite) {
-//                favoriteStar.setImageResource(R.drawable.favorite_green_star)
-//            } else {
-//                favoriteStar.setImageResource(R.drawable.favorite_outline_star)
-//            }
         }
 
     }

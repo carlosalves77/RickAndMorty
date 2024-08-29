@@ -50,16 +50,21 @@
                     android:id="@+id/character_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:fontFamily="@font/avenir_medium"
                     android:textColor="#BCFF4C"
-                    android:textSize="14sp" />
+                    android:textSize="12sp"
+                    tools:ignore="SmallSp" />
 
                 <TextView
                     android:id="@+id/character_specie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp"
+                    />
 
             </LinearLayout>
 

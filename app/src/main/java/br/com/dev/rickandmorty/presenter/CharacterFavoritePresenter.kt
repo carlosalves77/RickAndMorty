@@ -28,9 +28,7 @@ class CharacterFavoritePresenter(
     suspend fun deleteCharacter(id: Int) {
         scope.launch {
             model.deleteCharacter(id)
-            withContext(Dispatchers.IO) {
-                view.deleteCharacter(id)
-            }
+
         }
     }
 

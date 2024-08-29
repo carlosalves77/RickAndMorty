@@ -9,7 +9,6 @@ interface FavoriteContract {
     }
     interface FavoriteView {
         fun getCharacters(characters: List<CharacterDataBaseModel>)
-        fun deleteCharacter(id: Int)
     }
 
 }

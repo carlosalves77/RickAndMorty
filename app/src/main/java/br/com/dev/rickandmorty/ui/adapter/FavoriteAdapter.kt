@@ -1,7 +1,6 @@
 package br.com.dev.rickandmorty.ui.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,13 +9,11 @@ import br.com.dev.rickandmorty.databinding.FavoriteCardBinding
 import coil.load
 
 
-class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
+class FavoriteAdapter (
+          val deleteCharacter: (Int) -> Unit
+) : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
     private var mFavoriteCharacters = listOf<CharacterDataBaseModel>()
-
-    interface onDeleteClickListener {
-        fun onDeleteClick(id: Int)
-    }
 
 
     inner class MyViewHolder(val binding: FavoriteCardBinding) :
@@ -31,6 +28,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
         val binding =
             FavoriteCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
+
     }
 
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
@@ -39,8 +37,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
         holder.binding.apply {
 
-            characterName.text = currentCharacters.name
             speciesName.text = currentCharacters.species
+            characterName.text = currentCharacters.name
             favoriteCharacterImage.load(currentCharacters.picture) {
                 crossfade(true)
                 crossfade(1000)
@@ -48,7 +46,6 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
             favoriteStar.setOnClickListener {
                 deleteCharacter(currentCharacters.id)
-
             }
         }
 
@@ -62,9 +59,6 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun deleteCharacter(id: Int)  {
-
-    }
 
 
 }

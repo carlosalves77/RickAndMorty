@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -24,12 +25,18 @@ class FavoriteCharacterScreen : Fragment(), FavoriteContract.FavoriteView {
     private val binding by lazy {
         _binding!!
     }
-
-    private val favoriteAdapter = FavoriteAdapter()
-
-
     private val characterDetailPresenter: CharacterFavoritePresenter by inject { parametersOf(this) }
 
+    private val favoriteAdapter =  FavoriteAdapter(
+       fun (id: Int) {
+           lifecycleScope.launch {
+
+               characterDetailPresenter.deleteCharacter(id)
+
+           }
+           Toast.makeText(context?.applicationContext, "Personagem removido com sucesso!", Toast.LENGTH_SHORT).show()
+       }
+    )
 
 
     override fun onCreateView(
@@ -38,22 +45,21 @@ class FavoriteCharacterScreen : Fragment(), FavoriteContract.FavoriteView {
     ): View {
         _binding = FragmentFavoriteCharacterScreenBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         initRecyclerView()
 
-
         characterDetailPresenter.getCharacters()
-
         binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_favoriteCharacterScreen_to_homeScreenFragmentScreen)
         }
 
-
-
-        return binding.root
     }
 
     private fun initRecyclerView() {
-
         binding.favoriteRv.adapter = favoriteAdapter
         binding.favoriteRv.setHasFixedSize(true)
     }
@@ -64,13 +70,6 @@ class FavoriteCharacterScreen : Fragment(), FavoriteContract.FavoriteView {
         lifecycleScope.launch {
             favoriteAdapter.setData(characters)
         }
-    }
-
-    override fun deleteCharacter(id: Int) {
-        lifecycleScope.launch {
-            characterDetailPresenter.deleteCharacter(id)
-        }
-
     }
 
 

@@ -15,7 +15,7 @@ class Application : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@Application)
-            modules(NetworkModule, LocalModule)
+            modules(NetworkModule)
         }
 
     }
